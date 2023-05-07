@@ -1,25 +1,11 @@
 <footer>
-		<div class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<div class="col-auto text-white">
-					Адрес: Социалистическая 215
+		<div class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
+			<div class="col-12 text-white text-center">
+				<p><b>Южно-Российский государственный политехнический университет (НПИ) имени М.И. Платова</b> </p> 
+				<p><b>Адрес:</b>  г. Новочеркасск, ул. Просвещения 132</p>
+				<p><b>Студент:</b> Спиридонов А. Е.</p>
+				<p><b>Дипломный руководитель:</b> Рыбалкин А. Д.</p>
 			</div>
-			<div class="navbar-nav ml-auto">
-				<a href="#" class="icon">
-					<i class="fab fa-vk fa-lg" style="color:white;"></i>
-				</a>
-				<a href="#" class="icon">
-					<i class="fab fa-instagram fa-lg" style="color:white;"></i>
-				</a>
-				<a href="#" class="icon">
-					<i class="fab fa-whatsapp fa-lg" style="color:white;"></i>
-				</a>
-				<a href="#" class="icon">
-						<i class="fab fa-youtube fa-lg" style="color:white;"></i>
-				</a>
-				<a href="#" class="icon">
-					<i class="fab fa-telegram fa-lg" style="color:white;"></i>
-				</a>
-        	</div>
 		</div>
 </footer>
 

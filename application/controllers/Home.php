@@ -7,88 +7,64 @@ class Home extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('ajax_model');
+		$this->load->model('session_model');
+		$data = array(
+			'active_calculation' => '',
+			'active_guide' => '',
+			'active_catalog' => ''
+		);
 	}
 
 	public function index()
 	{
-		$data['title'] = 'Главная';
-		$this->parser->parse('main', $data);
-		// $this->load->view('table_example');
-	}
-
-	public function insert()
-	{
-		$name = $this->input->post('name');
-		$age = $this->input->post('age');
-
 		$data = array(
-			'name' => $name,
-			'age' => $age
+			'title' => 'Расчеты',
+			'active_calculation' => 'active'
 		);
-		$insert = $this->ajax_model->insertData('test', $data);
-		echo json_encode($insert);
+		$this->parser->parse('home_page', $data);
 	}
 
-	public function fetchDatafromDatabase()
+	public function guide()
 	{
-		$resultList = $this->ajax_model->fetchAllData('*', 'test', array());
-		
-		$result = array();
-		$button = '';
-		$i = 1;
-		foreach ($resultList as $key => $value) {
-
-			$button = '<a class="btn-sm btn-secondary text-light" onclick="editFun('.$value['id'].')"
-			 href="#">Edit</a>';
-			 $button .= ' <a class="btn-sm btn-danger text-light" onclick="deleteFun('.$value['id'].')"
-			 href="#">Delete</a>';
-			$result['data'][] = array(
-				$i++,
-				$value['name'],
-				$value['age'],
-				$button
-			);
-		}
-		echo json_encode($result);
-	}
-	
-	public function getEditData()
-	{
-		$id = $this->input->post('id');
-		$resultData = $this->ajax_model->fetchSingeData('*', 'test', array('id' => $id));
-		echo json_encode($resultData);
-	}
-
-	public function update()
-	{
-		$id = $this->input->post('id');
-		$name = $this->input->post('name');
-		$age = $this->input->post('age');
-
 		$data = array(
-			'name' => $name,
-			'age' => $age
+			'title' => 'Справочник',
+			'active_guide' => 'active'
 		);
-		$update = $this->ajax_model->updateData('test', $data, array('id' => $id));
-		if($update == true)
-		{
-			echo 1;
-		}
-		else{
-			echo 2;
-		}
+		$this->parser->parse('guide', $data);
 	}
-	
-    public function deleteSingeData()
-    {
-        $id = $this->input->post('id');
-        $dataDelete = $this->ajax_model->deleteData('test', array('id' => $id));
-		if($dataDelete == true)
+
+	public function input()
+	{
+		$data['title'] = 'Авторизация';
+		if(!empty($this->input->post('sign')))
 		{
-			echo 1;
+			$login = $this->input->post('login');
+			$password = $this->input->post('password');
+			$data['user'] = $this->ajax_model->fetchSingeData('*', 'user', array('login' => $login, 'password' => $password));
+			if(!empty($data['user']))
+			{
+				$session = array(
+					'id' => $data['user']['id'],
+					'role' => $data['user']['role']
+				);
+				$this->session->set_userdata($session);
+			}
 		}
-		else{
-			echo 2;
+		$role = $this->session->userdata('role');
+		if(isset($role))
+		{
+			if($role == 1)
+			{
+				redirect('catalog/admin');
+			}
 		}
-    }
+		$this->parser->parse('authorization', $data);
+	}
+
+	public function out()
+	{
+		$_SESSION = array();
+		unset($_SESSION);
+		redirect('home/input');
+	}
 }
