@@ -8,12 +8,29 @@ class Catalog extends CI_Controller {
 		parent::__construct();
 		$this->load->model('ajax_model');
 		$this->load->model('session_model');
+		$data = array(
+			'active_calculation' => '',
+			'active_guide' => '',
+			'active_catalog' => ''
+		);
 	}
 
 	public function index()
 	{
-		$data['title'] = 'Главная';
-		$this->parser->parse('home_page', $data);
+		$data = array(
+			'title' => 'Каталог',
+			'active_catalog' => 'active'
+		);
+		$this->parser->parse('catalog', $data);
+	}
+
+	public function detail()
+	{
+		$data = array(
+			'title' => 'Каталог',
+			'active_catalog' => 'active'
+		);
+		$this->parser->parse('detail', $data);
 	}
 
 	public function admin()

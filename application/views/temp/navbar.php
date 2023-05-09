@@ -17,7 +17,7 @@
                                         Справочник</a>
                                 </li>
                                 <li class="nav-item {active_catalog}">
-                                        <a href="<?=base_url('')?>" class="nav-link" aria-pressed="true">
+                                        <a href="<?=base_url('catalog/index')?>" class="nav-link" aria-pressed="true">
                                         Каталог трансформаторов</a>
                                 </li>
                         </ul>

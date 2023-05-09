@@ -5,3 +5,8 @@ body.background {
     background-size: no-repeat;
     background-attachment: fixed;
 }
+
+a.hoverblue:hover{
+    color: darkblue;
+    text-decoration: none;
+}
