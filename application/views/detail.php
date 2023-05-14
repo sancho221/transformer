@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
+                <div class="col-12" id="catalog">
                     <h5>Технические характеристики:</h5>
                     <p><b>Класс точности:</b> 0.5</p>
                     <p><b>Медная шина:</b> Да</p>
@@ -44,6 +44,27 @@
     </div>
 
   
+<script>
+
+    $(document).ready(function(){
+
+        var url_string = window.location.href; // www.test.com?filename=test
+        var url = new URL(url_string);
+        var paramValue = url.searchParams.get("id");
+
+
+        $.ajax({
+            url: '<?=base_url('catalog/getDataGet')?>',
+            success: function(result){
+                console.log(result);
+                let data = JSON.parse(result);
+                alert(result);
+                
+            }
+        });
+
+    });
+</script>
 
 
 

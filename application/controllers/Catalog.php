@@ -53,33 +53,23 @@ class Catalog extends CI_Controller {
 		echo json_encode($insert);
 	}
 
-	public function fetchDatafromDatabase()
+	public function fetchDataforCatalog()
 	{
-		$resultList = $this->ajax_model->fetchAllData('*', 'test', array());
-		
-		$result = array();
-		$button = '';
-		$i = 1;
-		foreach ($resultList as $key => $value) {
-
-			$button = '<a class="btn-sm btn-secondary text-light" onclick="editFun('.$value['id'].')"
-			 href="#">Edit</a>';
-			 $button .= ' <a class="btn-sm btn-danger text-light" onclick="deleteFun('.$value['id'].')"
-			 href="#">Delete</a>';
-			$result['data'][] = array(
-				$i++,
-				$value['name'],
-				$value['age'],
-				$button
-			);
-		}
-		echo json_encode($result);
+		$resultList = $this->ajax_model->fetchAllData('*', 'catalog', array());
+		echo json_encode($resultList);
 	}
 	
 	public function getEditData()
 	{
 		$id = $this->input->post('id');
-		$resultData = $this->ajax_model->fetchSingeData('*', 'test', array('id' => $id));
+		$resultData = $this->ajax_model->fetchSingeData('*', 'catalog', array('id' => $id));
+		echo json_encode($resultData);
+	}
+
+	public function getDataGet()
+	{
+		$id = $this->input->get('id');
+		$resultData = $this->ajax_model->fetchSingeData('*', 'catalog', array('id' => $id));
 		echo json_encode($resultData);
 	}
 
