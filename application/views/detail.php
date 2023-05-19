@@ -19,7 +19,7 @@
         <div class="col-12 col-lg-9">
             <div class="row">
                 <div class="col-3 rounded">
-                    <img src="<?=base_url('image/logo2.jpg')?>" class="img-fluid rounded-start" style="height: 300px;">
+                    <img src="<?=base_url('image/catalog/transf2.jpg')?>" class="img-fluid rounded-start" style="height: 300px;">
                 </div>
                 <div class="col-8 m-auto offset-1">
                     <h5>Трансформатор тока ТТК-30 150/5А кл. точн. 0.5 5В.А измерительный</h5>

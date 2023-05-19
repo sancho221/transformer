@@ -21,7 +21,7 @@
             <div class="card mb-3">
                 <a class="row g-0 hoverblue" href="<?=base_url('catalog/detail')?>">
                     <div class="col-3 col-lg-2">
-                        <img src="<?=base_url('image/logo2.jpg')?>" class="img-fluid rounded-start" style="height: 100px;">
+                        <img src="<?=base_url('image/catalog/transf1.jpeg')?>" class="img-fluid rounded-start" style="height: 100px;">
                     </div>
                     <div class="col-9 col-lg-9">
                         <div class="card-body">
