@@ -94,76 +94,19 @@
 <script>
 
   $(document).ready(function(){
-
     //коэффициент трансформации
     $('#rate').submit(function(e){
+      var first = parseInt($('input[name=first_current_r]').val()),
+          second = parseInt($('input[name=second_current_r]').val()),
+          result = first / second;
       e.preventDefault();
-      $.ajax({
-        url: '<?php echo base_url('calculations/getRate'); ?>',
-        data: $('#rate').serialize(),
-        type: 'post',
-        async: false,
-        dataType:'text',
-        success: function(data){
-          if(data != 0){
-            $('#answer_rate').find('p').remove();
-            $('#answer_rate').append('<p><b>Коэфф. трансформации = </b> ' + data + '</p>');
-          }
-        },
-        error: function()
-        {
-          alert('Ошибка');
-        }
-      });
+      if(first > second && isFinite(result)){
+        $('#answer_rate').find('p').remove();
+        $('#answer_rate').append('<p><b>Коэфф. трансформации = </b> ' + result + '</p>');
+      }
+      else if(!isFinite(result)) alert('Ошибка! Значение не должно = 0');
+      else alert('Ошибка! Первое значение должно > второго');
     });
-
-    $('#verify').submit(function(e){
-      e.preventDefault();
-      $.ajax({
-        url: '<?php echo base_url('calculations/getVerify'); ?>',
-        data: $('#verify').serialize(),
-        type: 'post',
-        async: false,
-        dataType:'text',
-        success: function(data){
-          if(data != 0){
-            $('#answer_rate').find('p').remove();
-            $('#answer_rate').append('<p><b>Коэфф. трансформации = </b> ' + data + '</p>');
-          }
-        },
-        error: function()
-        {
-          alert('Ошибка');
-        }
-      });
-    });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // $('#rate').submit(function(e){
-    //   var first = parseInt($('input[name=first_current_r]').val()),
-    //       second = parseInt($('input[name=second_current_r]').val()),
-    //       result = first / second;
-    //   e.preventDefault();
-    //   if(first > second && isFinite(result)){
-    //     $('#answer_rate').find('p').remove();
-    //     $('#answer_rate').append('<p><b>Коэфф. трансформации = </b> ' + result + '</p>');
-    //   }
-    //   else if(!isFinite(result)) alert('Ошибка! Значение не должно = 0');
-    //   else alert('Ошибка! Первое значение должно > второго');
-    // });
 
     //проверка ИТ
     $('#verify').submit(function(e){
