@@ -24,16 +24,5 @@ class Calculations extends CI_Controller {
             else if ($result == 0.0) echo $result = 'Упс, нельзя делить на 0';
     }
 	
-    public function deleteSingeData()
-    {
-        $id = $this->input->post('id');
-        $dataDelete = $this->ajax_model->deleteData('test', array('id' => $id));
-		if($dataDelete == true)
-		{
-			echo 1;
-		}
-		else{
-			echo 2;
-		}
-    }
+    
 }
