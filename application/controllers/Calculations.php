@@ -91,4 +91,68 @@ class Calculations extends CI_Controller {
 		if($result == 0.0) $result = 'Упс, нельзя делить на 0';
 		echo $result;
 	}
+
+	public function getSquare_Section()
+	{
+		$a = $this->input->post('ss_a');
+		$b = $this->input->post('ss_b');
+		$result = $a * $b;
+		if($result == 0.0) $result = 'Упс, нельзя делить на 0';
+		echo $result;
+	}
+
+	public function getPower_ss()
+	{
+		$s = $this->input->post('p_ss_s');
+		echo $result = pow($s, 2);
+	}
+
+	public function getRate_1v()
+	{
+		$form = $this->input->post('1v_rate_form');
+		$s = $this->input->post('1v_s');
+		if($form != 0){
+			$result = $form / $s;
+			if($result == 0.0) $result = 'Упс, нельзя делить на 0';
+		}
+		else if ($form == 0) echo $result = 0;
+		echo $result;
+	}
+
+	public function getAll_spirale()
+	{
+		$all = $this->input->post('all_1v');
+		$voltage = $this->input->post('all_voltage');
+		$result = $all * $voltage;
+		echo $result;
+	}
+
+	public function getSpiral_fc()
+	{
+		$voltage_f = $this->input->post('sfc_f_voltage');
+		$voltage_s = $this->input->post('sfc_s_voltage');
+		$spiral_s = $this->input->post('sfc_s_spiral');
+		$result = $voltage_f * $spiral_s / $voltage_s;
+		if($result != 0) echo $result;
+		else if($result == 0.0) echo $result = 0;
+	}
+
+	public function getCurrent_nc()
+	{
+		$power = $this->input->post('nc_power');
+		$voltage = $this->input->post('nc_voltage');
+		$result = $power / $voltage;
+		if($result != 0) echo $result;
+		else if($result == 0.0) echo $result = 0;
+	}
+
+	public function getVoltage_s_spiral()
+	{
+		$voltage = $this->input->post('vss_first_voltage');
+		$spiral_f = $this->input->post('vss_first_spiral');
+		$spiral_s = $this->input->post('vss_second_spiral');
+		$result = $voltage * $spiral_s / $spiral_f;
+		if($result != 0) echo $result;
+		else if($result == 0.0) echo $result = 0;
+	}
 }

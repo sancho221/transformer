@@ -12,10 +12,9 @@
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
           <a class="nav-item nav-link active" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">Общие</a>
-          <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="false">Размеры</a>
+          <a class="nav-item nav-link" id="nav-size-tab" data-toggle="tab" href="#nav-size" role="tab" aria-controls="nav-size" aria-selected="false">Размеры</a>
           <a class="nav-item nav-link" id="nav-check-tab" data-toggle="tab" href="#nav-check" role="tab" aria-controls="nav-check" aria-selected="false">Проверка</a>
-          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Первичная обмотка</a>
-          <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Вторичная обмотка</a>
+          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Первичная и вторичная обмотки</a>
         </div>
       </nav>
       <div class="tab-content p-2" id="nav-tabContent">
@@ -89,7 +88,6 @@
                 </form>
               </div>
 
-
               <div class="col-12 col-lg-5 border border-info pr-lg-4 p-lg-3 border-left-0 mt-2" style="border-width:3px !important;">
               <h4>Мощность - P (Ватт)</h4>
                 <form id="power">
@@ -156,13 +154,91 @@
                 </form>
               </div>
 
-
-
-
           </div>
         </div>
 
+        <div class="tab-pane fade" id="nav-size" role="tabpanel" aria-labelledby="nav-size-tab">
+          <div class="row">
 
+            <div class="col-12 col-lg-5 border border-warning pr-lg-4 p-lg-3 border-left-0" style="border-width:3px !important;">
+              <h4>Площадь сечения сердечника</h4>
+                <form id="square_section">
+                  <div class="form-row">
+                    <div class="form-group col-12 text-center">
+                      <img src="<?=base_url('image/Сердечник.jpg')?>" >
+                      <p class="text-muted" style="font-size:14px;">Формы: Ш - образные (1-4), П - образные (2-5), кольцевые (3-6).</p>
+                    </div>
+                    <div class="form-group col-12 col-lg-5">
+                      <input class="form-control" type="number" name="ss_a" placeholder="Введите длину, A" required>
+                    </div>
+                    <div class="form-group col-12 col-lg-5">
+                      <input class="form-control" type="number" name="ss_b" placeholder="Введите ширину, B" required>
+                    </div>
+                    <div class="form-group col-1">
+                      <button type="submit" class="btn btn-dark">Рассчитать</button>
+                    </div>
+                  </div>
+                  <div id="g_square_section"></div>
+                </form>
+              </div>
+
+              <div class="col-12 col-lg-5 border border-info ml-lg-3 p-lg-3 border-right-0" style="border-width:3px !important;">
+                <h4>Электрическая мощность по сечению сердечника</h4>
+                <form id="power_ss">
+                  <div class="form-row">
+                    <div class="form-group col-12 col-lg-5">
+                      <input class="form-control" type="number" name="p_ss_s" placeholder="Введите площадь сечения, S" required>
+                    </div>
+                    <div class="form-group col-1">
+                      <button type="submit" class="btn btn-dark">Рассчитать</button>
+                    </div>
+                  </div>
+                  <div id="g_power_ss"></div>
+                </form>
+
+                <h4>Количество витков обмотки на 1 В</h4>
+                <form id="spiral_1v">
+                  <div class="form-row">
+                    <div class="form-group col-12 col-lg-5">
+                      <select class="form-control" name="1v_rate_form">
+                        <option value="0">Выберите форму магнитоповода</option>
+                        <option value="60">Ш - образный</option>
+                        <option value="50">П - образный</option>
+                        <option value="40">Кольцевая</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-12 col-lg-5">
+                      <input class="form-control" type="number" name="1v_s" placeholder="Введите площадь сечения, S" required>
+                    </div>
+                    <div class="form-group col-1">
+                      <button type="submit" class="btn btn-dark">Рассчитать</button>
+                    </div>
+                    <div class="form-group col-12">
+                      <div class="text-muted" style="font-size:14px;">Формы можно узнать на картинке слева.</div>
+                    </div>
+                  </div>
+                  <div id="g_spiral_1v"></div>
+                </form>
+
+                <h4>Количество витков обмоток трансформатора</h4>
+                <form id="spiral_all">
+                  <div class="form-row">
+                    <div class="form-group col-12 col-lg-5">
+                      <input class="form-control" type="number" name="all_1v" placeholder="Введите кол-во витков на 1В, N" required>
+                    </div>
+                    <div class="form-group col-12 col-lg-5">
+                      <input class="form-control" type="number" name="all_voltage" placeholder="Введите напряжение, U" required>
+                    </div>
+                    <div class="form-group col-1">
+                      <button type="submit" class="btn btn-dark">Рассчитать</button>
+                    </div>
+                  </div>
+                  <div id="g_spiral_all"></div>
+                </form>
+              </div>
+
+          </div>
+        </div>
       
         <div class="tab-pane fade" id="nav-check" role="tabpanel" aria-labelledby="nav-check-tab">
 
@@ -224,14 +300,108 @@
 
         </div>
 
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+          <div class="row">
+
+            <div class="col-12 col-lg-5 border border-warning pr-lg-4 p-lg-3 border-left-0" style="border-width:3px !important;">
+              <h4>Количество витков в намотке первичной обмотки</h4>
+                <form id="spiral_first_current">
+                  <div class="form-row">
+                    <div class="form-group col-12 col-lg-12">
+                      <input class="form-control" type="number" name="sfc_f_voltage" placeholder="Введите напряжение первичной обмотки, В" required>
+                    </div>
+                    <div class="form-group col-12 col-lg-12">
+                      <input class="form-control" type="number" name="sfc_s_spiral" placeholder="Введите кол-во витков вторичной обмотки" required>
+                    </div>
+                    <div class="form-group col-12 col-lg-12">
+                      <input class="form-control" type="number" name="sfc_s_voltage" placeholder="Введите напряжение вторичной обмотки, В" required>
+                    </div>
+                    <div class="form-group col-1">
+                      <button type="submit" class="btn btn-dark">Рассчитать</button>
+                    </div>
+                  </div>
+                  <div id="g_spiral_first_current"></div>
+                </form>
+              </div>
+
+              <div class="col-12 col-lg-5 border border-info ml-lg-3 p-lg-3 border-right-0" style="border-width:3px !important;">
+                <h4>Расчет номинального тока обмотки трансформатора</h4>
+                <form id="nom_current">
+                  <div class="form-row">
+                    <div class="form-group col-12 col-lg-12">
+                      <input class="form-control" type="number" name="nc_power" placeholder="Введите мощность одной из обмоток, Вт" required>
+                    </div>
+                    <div class="form-group col-12 col-lg-12">
+                      <input class="form-control" type="number" name="nc_voltage" placeholder="Введите напряжения одной из обмоток, В" required>
+                    </div>
+                    <div class="form-group col-1">
+                      <button type="submit" class="btn btn-dark">Рассчитать</button>
+                    </div>
+                  </div>
+                  <div id="g_nom_current"></div>
+                </form>
+              </div>
 
 
-        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">Номер два</div>
-        
-        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">Третий</div>
+              <div class="col-12 col-lg-5 border border-info pr-lg-4 p-lg-3 border-left-0 mt-2" style="border-width:3px !important;">
+              <h4>Напряжение на вторичной обмотке трансформатора</h4>
+                <form id="voltage_s_spiral">
+                  <div class="form-row">
+                    <div class="form-group col-12 col-lg-12">
+                      <input class="form-control" type="number" name="vss_first_voltage" placeholder="Введите первичное напряжение, В">
+                    </div>
+                    <div class="form-group col-12 col-lg-12">
+                      <input class="form-control" type="number" name="vss_first_spiral" placeholder="Введите кол-во первичных обмоток">
+                    </div>
+                    <div class="form-group col-12 col-lg-12">
+                      <input class="form-control" type="number" name="vss_second_spiral" placeholder="Введите кол-во вторичных обмоток">
+                    </div>
+                    <div class="form-group col-1">
+                      <button type="submit" class="btn btn-dark">Рассчитать</button>
+                    </div>
+                  </div>
+                  <div id="g_voltage_s_spiral"></div>
+                </form>
+              </div>
+
+              <!-- <div class="col-12 col-lg-5 border border-warning ml-lg-3 p-lg-3 border-right-0 mt-2" style="border-width:3px !important;">
+                <h4>Сопротивление - R (Ом)</h4>
+                <form id="resist">
+                  <div class="form-check">
+                    <input id="r_pi" class="form-check-input" type="radio" name="r_check" value="1">
+                    <label for="r_pi" class="form-check-label">По напряжению и силе тока (U и I)</label>
+                  </div>
+                  <div class="form-check">
+                    <input id="r_ir" class="form-check-input" type="radio" name="r_check" value="2">
+                    <label for="r_ir" class="form-check-label">По мощности и силе тока (P и I)</label>
+                  </div>
+                  <div class="form-check">
+                    <input id="r_pr" class="form-check-input" type="radio" name="r_check" value="3">
+                    <label for="r_pr" class="form-check-label">По напряжению и мощности (U и P)</label>
+                  </div>
+                  <div class="form-row resist">
+                    <div class="form-group col-12 col-lg-5 r_voltage">
+                      <input class="form-control" type="number" name="r_voltage" placeholder="Введите напряжение, В">
+                    </div>
+                    <div class="form-group col-12 col-lg-5 r_current">
+                      <input class="form-control" type="number" name="r_current" placeholder="Введите силу тока, А">
+                    </div>
+                    <div class="form-group col-12 col-lg-5 r_power">
+                      <input class="form-control" type="number" name="r_power" placeholder="Введите мощность, Вт">
+                    </div>
+                    <div class="form-group col-1">
+                      <button type="submit" class="btn btn-dark">Рассчитать</button>
+                    </div>
+                  </div>
+                  <div id="g_resist"></div>
+                </form>
+              </div> -->
+
+
+          </div>
+        </div>
 
       </div>
-
     </div>
   </div>
 </div>
@@ -418,8 +588,160 @@
       });
     });
 
+    //площадь сечения сердечника
+    $('#square_section').submit(function(e){
+      e.preventDefault();
+      $.ajax({
+        url: '<?php echo base_url('calculations/getSquare_Section'); ?>',
+        data: $('#square_section').serialize(),
+        type: 'post',
+        async: false,
+        dataType:'text',
+        success: function(data){
+          if(data != 0){
+            $('#g_square_section').find('p').remove();
+            $('#g_square_section').append('<p><b>Площадь сечения = </b> ' + data + ' см²</p>');
+          }
+        },
+        error: function()
+        {
+          alert('Ошибка');
+        }
+      });
+    });
+
+    //эл. мощность по сечению сердечника
+    $('#power_ss').submit(function(e){
+    e.preventDefault();
+    $.ajax({
+        url: '<?php echo base_url('calculations/getPower_ss'); ?>',
+        data: $('#power_ss').serialize(),
+        type: 'post',
+        async: false,
+        dataType:'text',
+        success: function(data){
+          if(data != 0){
+            $('#g_power_ss').find('p').remove();
+            $('#g_power_ss').append('<p><b>Эл. мощность по сечению сердечника = </b> ' + data + ' Вт</p>');
+          }
+        },
+        error: function()
+        {
+          alert('Ошибка');
+        }
+      });
+    });
+
+    //кол-во витков обмотки на 1В
+    $('#spiral_1v').submit(function(e){
+    e.preventDefault();
+    $.ajax({
+        url: '<?php echo base_url('calculations/getRate_1v'); ?>',
+        data: $('#spiral_1v').serialize(),
+        type: 'post',
+        async: false,
+        dataType:'text',
+        success: function(data){
+          if(data != 0){
+            $('#g_spiral_1v').find('p').remove();
+            $('#g_spiral_1v').append('<p><b>Кол-во витков на 1В = </b> ' + data + ' </p>');
+          } else if (data == 0) alert('Ошибка! Выберите форму из списка');
+        },
+        error: function()
+        {
+          alert('Ошибка');
+        }
+      });
+    });
+
+    //кол-во витков обмоток трансформатора
+    $('#spiral_all').submit(function(e){
+    e.preventDefault();
+    $.ajax({
+        url: '<?php echo base_url('calculations/getAll_spirale'); ?>',
+        data: $('#spiral_all').serialize(),
+        type: 'post',
+        async: false,
+        dataType:'text',
+        success: function(data){
+          $('#g_spiral_all').find('p').remove();
+          $('#g_spiral_all').append('<p><b>Кол-во витков обмоток = </b> ' + data + ' </p>');
+        },
+        error: function()
+        {
+          alert('Ошибка');
+        }
+      });
+    });
+
+    //кол-во витков в намотке первичной обмотке
+    $('#spiral_first_current').submit(function(e){
+    e.preventDefault();
+    $.ajax({
+        url: '<?php echo base_url('calculations/getSpiral_fc'); ?>',
+        data: $('#spiral_first_current').serialize(),
+        type: 'post',
+        async: false,
+        dataType:'text',
+        success: function(data){
+          if(data != 0){
+            $('#g_spiral_first_current').find('p').remove();
+            $('#g_spiral_first_current').append('<p><b>Кол-во витков в намотке первичной обмотки = </b> ' + data + ' </p>');
+          } else if(data == 0 ) alert('Ошибка! Нельзя делить на 0');
+        },
+        error: function()
+        {
+          alert('Ошибка');
+        }
+      });
+    });
+
+    //номинальный ток одной из обмоток трансформатора
+    $('#nom_current').submit(function(e){
+    e.preventDefault();
+    $.ajax({
+        url: '<?php echo base_url('calculations/getCurrent_nc'); ?>',
+        data: $('#nom_current').serialize(),
+        type: 'post',
+        async: false,
+        dataType:'text',
+        success: function(data){
+          if(data != 0){
+            $('#g_nom_current').find('p').remove();
+            $('#g_nom_current').append('<p><b>Номинальный ток = </b> ' + data + ' А</p>');
+          } else if(data == 0 ) alert('Ошибка! Нельзя делить на 0');
+        },
+        error: function()
+        {
+          alert('Ошибка');
+        }
+      });
+    });
+
+    //напряжение на вторичной обмотке трансформатора
+    $('#voltage_s_spiral').submit(function(e){
+    e.preventDefault();
+    $.ajax({
+        url: '<?php echo base_url('calculations/getVoltage_s_spiral'); ?>',
+        data: $('#voltage_s_spiral').serialize(),
+        type: 'post',
+        async: false,
+        dataType:'text',
+        success: function(data){
+          if(data != 0){
+            $('#g_voltage_s_spiral').find('p').remove();
+            $('#g_voltage_s_spiral').append('<p><b>Напряжение на вторичной обмотке = </b> ' + data + ' В</p>');
+          } else if(data == 0 ) alert('Ошибка! Нельзя делить на 0');
+        },
+        error: function()
+        {
+          alert('Ошибка');
+        }
+      });
+    });
 
 
+    
 
 
 
