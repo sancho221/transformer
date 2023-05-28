@@ -4,16 +4,16 @@
                         <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbar1">
-                        <a class="navbar-brand" href="<?=base_url('')?>">
+                        <a class="navbar-brand" href="<?=base_url('catalog/admin')?>">
                                 <img src="<?=base_url('image/admin.jpg')?>" width="40" height="40" class="rounded-circle">
                         </a>
                         <ul class="navbar-nav mr-auto text-center" id="dropdown-menu">  
-                                <li class="nav-item">
-                                        <a href="<?=base_url('')?>" class="nav-link" aria-pressed="true">
+                                <li class="nav-item {active_admin_catalog}">
+                                        <a href="<?=base_url('catalog/admin')?>" class="nav-link" aria-pressed="true">
                                         Каталог</a>
                                 </li>      
-                                <li class="nav-item">
-                                        <a href="<?=base_url('')?>" class="nav-link" aria-pressed="true">
+                                <li class="nav-item {active_application}">
+                                        <a href="<?=base_url('application/admin')?>" class="nav-link" aria-pressed="true">
                                         Заявки</a>
                                 </li>
                         </ul>

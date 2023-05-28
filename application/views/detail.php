@@ -9,11 +9,6 @@
             <div class="col-2">
                 <h3>Каталог</h3>
             </div>
-            <div class="col-8 col-lg-5 offset-2">
-                <button type="button" class="btn btn-primary">
-                    <i class="fa fa-plus-square" aria-hidden="true"></i>
-                </button>
-            </div>
         </div>
     </form>
 
@@ -56,11 +51,11 @@
                                 </div>
                                 <div class="row">
                                     <p class="col-5"><b>Номинальное напряжение:</b></p>
-                                    <div class="col">${data.copper}</div>
+                                    <div class="col">${data.voltage} В</div>
                                 </div>
                                 <div class="row">
                                     <p class="col-5"><b>Первичный ток:</b></p>
-                                    <div class="col">${data.voltage}</div>
+                                    <div class="col">${data.first_current} А</div>
                                 </div>
                                 <div class="row">
                                     <p class="col-5"><b>Вторичное подключение:</b></p>
@@ -68,11 +63,11 @@
                                 </div>
                                 <div class="row">
                                     <p class="col-5"><b>Вторичная мощность:</b></p>
-                                    <div class="col">${data.second_power}</div>
+                                    <div class="col">${data.second_power} ВА</div>
                                 </div>
                                 <div class="row">
                                     <p class="col-5"><b>Вторичный номинальный ток:</b></p>
-                                    <div class="col">${data.second_current}</div>
+                                    <div class="col">${data.second_current} А</div>
                                 </div>
                                 <div class="row">
                                     <p class="col-5"><b>Защита от прикосновения:</b></p>
@@ -80,11 +75,11 @@
                                 </div>
                                 <div class="row">
                                     <p class="col-5"><b>Вес:</b></p>
-                                    <div class="col">${data.weight}</div>
+                                    <div class="col">${data.weight} кг</div>
                                 </div>
                                 <div class="row">
                                     <p class="col-5"><b>Высота:</b></p>
-                                    <div class="col">${data.height}</div>
+                                    <div class="col">${data.height} см</div>
                                 </div>
 
                             </div>

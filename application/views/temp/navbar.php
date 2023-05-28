@@ -9,7 +9,7 @@
                         </a>
                         <ul class="navbar-nav mr-auto text-center" id="dropdown-menu">  
                                 <li class="nav-item {active_calculation}">
-                                        <a href="<?=base_url('')?>" class="nav-link" aria-pressed="true">
+                                        <a href="<?=base_url('home/index')?>" class="nav-link" aria-pressed="true">
                                         Расчеты</a>
                                 </li>      
                                 <li class="nav-item {active_guide}">
