@@ -740,12 +740,6 @@
       });
     });
 
-
-    
-
-
-
-
     //коэффициент трансформации
     $('#rate').submit(function(e){
       e.preventDefault();
@@ -768,40 +762,26 @@
       });
     });
 
-    $('#verify').submit(function(e){
-      e.preventDefault();
-      $.ajax({
-        url: '<?php echo base_url('calculations/getVerify'); ?>',
-        data: $('#verify').serialize(),
-        type: 'post',
-        async: false,
-        dataType:'text',
-        success: function(data){
-          if(data != 0){
-            $('#answer_rate').find('p').remove();
-            $('#answer_rate').append('<p><b>Коэфф. трансформации = </b> ' + data + '</p>');
-          }
-        },
-        error: function()
-        {
-          alert('Ошибка');
-        }
-      });
-    });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // $('#verify').submit(function(e){
+    //   e.preventDefault();
+    //   $.ajax({
+    //     url: '<?php echo base_url('calculations/getVerify'); ?>',
+    //     data: $('#verify').serialize(),
+    //     type: 'post',
+    //     async: false,
+    //     dataType:'text',
+    //     success: function(data){
+    //       if(data != 0){
+    //         $('#answer_rate').find('p').remove();
+    //         $('#answer_rate').append('<p><b>Коэфф. трансформации = </b> ' + data + '</p>');
+    //       }
+    //     },
+    //     error: function()
+    //     {
+    //       alert('Ошибка');
+    //     }
+    //   });
+    // });
 
     // $('#rate').submit(function(e){
     //   var first = parseInt($('input[name=first_current_r]').val()),
@@ -818,19 +798,21 @@
 
     //проверка ИТ
     $('#verify').submit(function(e){
+      $('#answer_verify').find('p, #answer, #detail').remove();
+      var result = false;
       var first = parseInt($('input[name=first_current_v]').val()),     //первичный ток
           second = parseInt($('input[name=second_current_v]').val()),   //вторичный ток
           current = parseInt($('input[name=current_v]').val()),         //потребляемый ток
           min_load = parseInt($('input[name=min_load_v]').val()),       //мин нагрузка
 
           rate = first / second,                                        //коэф трансформации
-          nominal_current = current / rate,                             //ток вторичной обмотки при номинальном токе
+          nominal_current = current / rate,                             //ток вторичной обмотки при номинальном нагрузке
           min_current = second * rate / 100;                            //мин ток вторичной обмотки при номинальной нагрузке
       e.preventDefault();
 
       if(first > second && current < first && isFinite(first) && isFinite(second)){
         if(nominal_current > min_current){
-          var second_current_min = min_load / rate,                       //ток вторичной обмотки при минимальном токе
+          var second_current_min = min_load / rate,                       //ток вторичной обмотки при минимальном нагрузке
               min_second_current = second * second / 100;                 //мин ток вторичной обмотки при минимальной нагрузке    
           if(second_current_min > min_second_current)
           {
@@ -840,39 +822,29 @@
             if(second_current_25 > second_25)
             {
               var result = true;
-              $('#answer_verify').find('p, #answer, #detail').remove();
               $('#answer_verify').append('<p><b>Вывод:</b> измерительный трансформатор ' + first + '/' + second + ' для нагрузки ' + current + 'А выбран правильно.</p>');
               $('#answer_verify').append(
-                `<button class="btn btn-info" id="detail">Подробнее</button>
-                  <div id="v_answer" class="d-none">
-                    <p>Проверка</p>
-                  </div>
-                `);
-                  // <div class="d-none" id="answer">
-                  //   <p><b>` + current + `/` + rate ` = ` + nominal_current + `А</b> - ток вторичной обмотки при номинальном токе.</p>
-                  //   <p><b></b> - минимальный ток вторичной обмотки при номинальной нагрузке</p>
-                  //   <p><b></b> - требование выполнено</p>
-                  //   <p><b></b> - ток вторичной обмотки при минимальном токе</p>
-                  //   <p><b></b> - минимальный ток вторичной обмотки при минимальной нагрузке </p>
-                  //   <p><b></b> - требование выполнено</p>
-                  //   <p><b></b> - ток при 25% нагрузке</p>
-                  //   <p><b></b> - ток во вторичной нагрузке при 25% нагрузке</p>
-                  //   <p><b></b> - минимальный ток вторичной обмотки при 25% нагрузке</p>
-                  //   <p><b></b> - требование выполнено</p>
-                  // </div>`);
+                  `<div id="answer_button">
+                    <p>Подробнее о вычислениях:</p>
+                    <p><b>${current} / ${rate} = ${nominal_current} А</b> - ток вторичной обмотки при номинальном нагрузке.</p>
+                    <p><b>(${second} * ${rate}) / 100 = ${min_current} А</b> - минимальный ток вторичной обмотки при номинальной нагрузке.</p>
+                    <p><b>${nominal_current} > ${min_current}</b> - требование выполнено.</p>
+                    <p><b>${min_load} / ${rate} = ${second_current_min} А</b> - ток вторичной обмотки при минимальном нагрузке.</p>
+                    <p><b>${second}² / 100 = ${min_second_current} А</b> - минимальный ток вторичной обмотки при минимальной нагрузке.</p>
+                    <p><b>${second_current_min} > ${min_second_current}</b> - требование выполнено.</p>
+                    <p><b>${current} * 25 / 100 = ${current_25} А</b> - ток при 25% нагрузке.</p>
+                    <p><b>${current_25} / ${rate} = ${second_current_25} А</b> - ток во вторичной нагрузке при 25% нагрузке.</p>
+                    <p><b>${second} * 10 / 100 = ${second_25} А</b> - минимальный ток вторичной обмотки при 25% нагрузке.</p>
+                    <p><b>${second_current_25} > ${second_25}</b> - требование выполнено.</p>
+                  </div>`);
             }
           }   
         }
       }
-      else if(current > first) alert('Ошибка! Трансформатор не предназначен для такой нагрузки');
-      else alert('Ошибка! Недопустимые значения');
+      else if(current > first || result == false) alert('Ошибка! Трансформатор не предназначен для такой нагрузки');
     });   
 
   });
-  
-    $('#detail').on('click', function(){
-      $('#v_answer').toggleClass(display);
-    });
 
 
 </script>
